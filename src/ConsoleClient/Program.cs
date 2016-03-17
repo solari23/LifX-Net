@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using LifXNet;
 
 namespace ConsoleClient
 {
@@ -10,6 +8,8 @@ namespace ConsoleClient
     {
         static void Main(string[] args)
         {
+            DeviceManager deviceManager = new DeviceManager(() => new UdpSocketWrapper());
+            Console.WriteLine("Hello World!");
         }
     }
 }

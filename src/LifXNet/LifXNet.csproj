@@ -39,6 +39,16 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="DeviceManager.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="IUdpSocket.cs" />
+    <Compile Include="Light.cs" />
+    <Compile Include="Messages\Message.cs" />
+    <Compile Include="Messages\Request.cs" />
+    <Compile Include="Messages\Response.cs" />
+    <Compile Include="NetworkManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
