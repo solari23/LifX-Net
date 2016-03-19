@@ -48,6 +48,7 @@
     <Compile Include="Helpers.cs" />
     <Compile Include="IUdpSocket.cs" />
     <Compile Include="Light.cs" />
+    <Compile Include="Messages\GetServiceRequest.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Messages\MessageType.cs" />
     <Compile Include="Messages\Request.cs" />
