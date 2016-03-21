@@ -38,7 +38,7 @@ namespace LifXNet.Messages
 
             MessageType messageType = MessageType.NotSet;
 
-            if (buffer.Length - MessageTypeSizeInBytes <= MessageTypeFieldOffsetInBytes)
+            if (buffer.Length - MessageTypeSizeInBytes >= MessageTypeFieldOffsetInBytes)
             {
                 byte[] messageTypeBytes = new byte[MessageTypeSizeInBytes];
                 Array.Copy(buffer, MessageTypeFieldOffsetInBytes, messageTypeBytes, 0, MessageTypeSizeInBytes);

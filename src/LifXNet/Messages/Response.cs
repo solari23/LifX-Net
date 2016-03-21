@@ -11,7 +11,6 @@ namespace LifXNet.Messages
         public virtual void DeserializeFrom(MemoryStream buffer)
         {
             // TODO
-            throw new NotImplementedException();
         }
 
         protected abstract void DeserializePayloadFrom(MemoryStream buffer);
