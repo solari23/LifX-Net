@@ -1,0 +1,160 @@
++==================+
+|GetService Request|
++==================+
+
+Frame (8B)
+==========
+24 00                       // Message Size (36)
+00 34                       // 0011 0100 0000 0000 (after flip to big-endian)
+                            // ^^^^ ^            ^
+                            // |||| |____________|
+                            // ||||       `- Protocol (1024)
+                            // |||`- Addressable (1)
+                            // ||`- Tagged (1)
+                            // `- Origin (0)
+04 ae 73 06                 // Source (random number?)
+
+Frame Address (16B)
+===================
+00 00 00 00 00 00 00 00     // Target MAC Address (0 = All devices)
+00 00 00 00 00 00           // Reserved (0)
+00                          // 0000 0000 (after flip to big-endian)
+                            // ^     ^^^
+                            // |     |||
+                            // |     ||`- res_required (0)
+                            // |_____|`- ack_required (0)
+                            //    `- Reserved (0)
+00                          // Sequence (0)
+
+Protocol Header (12B)
+=====================
+00 00 00 00 00 00 00 00     // Reserved (0)
+02 00                       // Message Type (2 = GetService)    
+00 00                       // Reserved (0)
+
+
+
++================+
+|GetLight Request|
++================+
+
+Frame (8B)
+==========
+24 00                       // Message Size (36)
+00 14                       // 0001 0100 0000 0000 (after flip to big-endian)
+                            // ^^^^ ^            ^
+                            // |||| |____________|
+                            // ||||       `- Protocol (1024)
+                            // |||`- Addressable (1)
+                            // ||`- Tagged (0)
+                            // `- Origin (0)
+70 56 2e 04                 // Source (random number?)
+
+Frame Address (16B)
+===================
+d0 73 d5 12 52 f1 00 00     // Target MAC Address
+4c 49 46 58 56 32           // Reserved (Spells "LIFXV2")
+00                          // 0000 0000 (after flip to big-endian)
+                            // ^     ^^^
+                            // |     |||
+                            // |     ||`- res_required (0) <-- "Get*" calls always get response?
+                            // |_____|`- ack_required (0)
+                            //    `- Reserved (0)
+00                          // Sequence (0)
+
+Protocol Header (12B)
+=====================
+00 00 00 00 00 00 00 00     // Reserved (0)
+65 00                       // Message Type (101 = Get)
+00 00                       // Reserved (0)
+
+
+
++=====================+
+|StateService Response|
++=====================+
+
+Frame (8B)
+==========
+29 00                       // Message Size (41)
+00 54                       // 0101 0100 0000 0000     (after flip to big-endian)
+                            // ^^^^ ^            ^
+                            // |||| |____________|
+                            // ||||       `- Protocol (1024)
+                            // |||`- Addressable (1)
+                            // ||`- Tagged (0)
+                            // `- Origin (1)
+04 ae 73 06                 // Source (echo of GetService source)
+
+Frame Address (16B)
+===================
+d0 73 d5 12 00 6c 00 00     // Target MAC Address (actually contains the light's MAC)   
+4c 49 46 58 56 32           // Reserved (Spells "LIFXV2")
+00                          // 0000 0000 (after flip to big-endian)
+                            // ^     ^^^
+                            // |     |||
+                            // |     ||`- res_required (0) <-- "Get" calls always get response?
+                            // |_____|`- ack_required (0)
+                            //    `- Reserved (0)
+00                          // Sequence (0)
+
+Protocol Header (12B)
+=====================
+98 cc ad 3a 23 61 3d 14     // Reserved (?)
+03 00                       // Message Type (3 = StateService)
+00 00                       // Reserved (0)
+
+Payload (5B)
+============
+01                          // Service (1 = UDP)
+7c dd 00 00                 // Port Number (56700)
+
+
+
++===================+
+|LightState Response|
++===================+
+
+Frame (8B)
+==========
+58 00                       // Message Size (88)
+00 54                       // 0101 0100 0000 0000     (after flip to big-endian)
+                            // ^^^^ ^            ^
+                            // |||| |____________|
+                            // ||||       `- Protocol (1024)
+                            // |||`- Addressable (1)
+                            // ||`- Tagged (0)
+                            // `- Origin (1)
+70 56 2e 04                 // Source
+
+Frame Address (16B)
+===================
+d0 73 d5 11 e9 94 00 00     // Target MAC Address (actually contains the light's MAC)
+4c 49 46 58 56 32           // Reserved (Spells "LIFXV2")
+00                          // 0000 0000 (after flip to big-endian)
+                            // ^     ^^^
+                            // |     |||
+                            // |     ||`- res_required (0) <-- "Get" calls always get response?
+                            // |_____|`- ack_required (0)
+                            //    `- Reserved (0)
+e3                          // Sequence (227)
+
+Protocol Header (12B)
+=====================
+e0 a2 5a 90 25 61 3d 14     // Reserved (?)
+6b 00                       // Message Type (107 = State)
+00 00                       // Reserved (0)    
+
+Payload (52B)
+=============
+65 c6                       // <-+ H(ue)
+ff ff                       //   | S(aturation)
+cc cc                       //   | B(rightness)
+ac 0d                       // <-+ K(elvin)
+00 00                       // Reserved (0)
+00 00                       // Power (0)
+44 69 6e 65 52 69 67 68     // <-+
+74 00 00 00 00 00 00 00     //   |
+00 00 00 00 00 00 00 00     //   |- Label (Spells "DineRight")
+00 00 00 00 00 00 00 00     // <-|
+00 00 00 00 00 00 00 00     // Reserved (0)

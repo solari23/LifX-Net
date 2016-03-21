@@ -1,4 +1,6 @@
-﻿using System.Net.Sockets;
+﻿using System;
+using System.Net;
+using System.Net.Sockets;
 
 using LifXNet;
 
@@ -10,6 +12,34 @@ namespace ConsoleClient
     /// </summary>
     public class UdpSocketWrapper : IUdpSocket
     {
+        public static Func<IUdpSocket> Generator
+        {
+            get
+            {
+                return () => new UdpSocketWrapper();
+            }
+        }
+
         private Socket _socket;
+
+        public UdpSocketWrapper()
+        {
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        }
+
+        public void BindTo(IPEndPoint endPoint)
+        {
+            _socket.Bind(endPoint);
+        }
+
+        public int ReceiveFrom(byte[] buffer, ref EndPoint remoteEndPoint)
+        {
+            return _socket.ReceiveFrom(buffer, ref remoteEndPoint);
+        }
+
+        public void SendTo(byte[] buffer, EndPoint remoteEndPoint)
+        {
+            _socket.SendTo(buffer, remoteEndPoint);
+        }
     }
 }

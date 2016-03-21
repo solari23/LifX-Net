@@ -8,7 +8,7 @@ namespace ConsoleClient
     {
         static void Main(string[] args)
         {
-            DeviceManager deviceManager = new DeviceManager(() => new UdpSocketWrapper());
+            DeviceManager deviceManager = new DeviceManager(UdpSocketWrapper.Generator);
             Console.WriteLine("Hello World!");
         }
     }

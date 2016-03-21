@@ -2,6 +2,8 @@
 {
     internal enum MessageType : System.UInt16
     {
+        NotSet = 0,
+
         //
         // Device Messages
         //

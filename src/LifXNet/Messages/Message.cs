@@ -7,9 +7,9 @@ namespace LifXNet.Messages
     /// </summary>
     internal abstract class Message
     {
-        public const int FrameSizeInBytes = 8;
-        public const int FrameAddressSizeInBytes = 16;
-        public const int ProtocolHeaderSizeInBytes = 12;
+        public const UInt16 FrameSizeInBytes = 8;
+        public const UInt16 FrameAddressSizeInBytes = 16;
+        public const UInt16 ProtocolHeaderSizeInBytes = 12;
 
         /// <summary>
         /// Gets the size of this message in bytes.
@@ -34,6 +34,6 @@ namespace LifXNet.Messages
         /// <summary>
         /// Gets the size of this message's payload in bytes.
         /// </summary>
-        public abstract int PayloadSizeInBytes { get; }
+        public abstract UInt16 PayloadSizeInBytes { get; }
     }
 }

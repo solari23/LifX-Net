@@ -3,11 +3,11 @@ using System.IO;
 
 namespace LifXNet.Messages
 {
-    internal class GetServiceRequest : Request
+    internal sealed class GetServiceRequest : Request
     {
         public override MessageType MessageType { get { return MessageType.GetService; } }
 
-        public override int PayloadSizeInBytes
+        public override UInt16 PayloadSizeInBytes
         {
             get
             {
