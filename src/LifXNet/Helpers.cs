@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace LifXNet
@@ -8,6 +9,16 @@ namespace LifXNet
     /// </summary>
     internal static class Helpers
     {
+        /// <summary>
+        /// Performs a null check on the first parameter and throws the appropriate exception if it is null.
+        /// </summary>
+        /// <param name="parameter">The parameter to check.</param>
+        /// <param name="parameterName">The name of the parameter.</param>
+        /// <remarks>
+        /// This helper should ONLY be used for user-facing public interfaces. For internal checks, use
+        /// debug assertions instead. That way, if we have a bug in the library, it will end up throwing on a
+        /// null de-reference which should make it obvious to the user that they aren't doing something wrong.
+        /// </remarks>
         public static void NullCheck(object parameter, string parameterName)
         {
             if (parameter == null)
@@ -26,10 +37,7 @@ namespace LifXNet
         /// <returns>The bytes read from the buffer.</returns>
         public static byte[] ReadBytes(this MemoryStream buffer, int count)
         {
-            if (count <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(count), nameof(count) + " must be greater than 0!");
-            }
+            Debug.Assert(count <= 0);
 
             byte[] bytes = new byte[count];
             buffer.Read(bytes, 0, count);
