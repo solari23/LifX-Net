@@ -27,7 +27,7 @@ namespace LifXNet
             }
         }
 
-        #region Little Endian Buffer Helpers
+        #region MemoryStream Extension Methods
 
         /// <summary>
         /// Reads and returns the requested number of bytes from the buffer.
@@ -42,6 +42,25 @@ namespace LifXNet
             byte[] bytes = new byte[count];
             buffer.Read(bytes, 0, count);
             return bytes;
+        }
+
+        /// <summary>
+        /// Writes the requested number of zero bytes to the buffer.
+        /// </summary>
+        /// <param name="buffer">The buffer to write to.</param>
+        /// <param name="count">The number of zeros to write.</param>
+        public static void WriteZeros(this MemoryStream buffer, int count)
+        {
+            byte[] zeros = new byte[count];
+
+            // This might be overkill but let's not hang our hats on default initialization.
+            //
+            for (int i = 0; i < count; i++)
+            {
+                zeros[i] = 0;
+            }
+
+            buffer.Write(zeros, 0, count);
         }
 
         /// <summary>

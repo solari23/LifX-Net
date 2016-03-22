@@ -76,7 +76,7 @@ namespace LifXNet.Messages
         /// <param name="buffer">The buffer to read from.</param>
         private void ReadFrameAddress(MemoryStream buffer)
         {
-            // The first 8 bytes contain the 6-byte Target MAC Address, right padded with 0 bytes.
+            // The first 8 bytes contain the 6-byte Target MAC Address, right padded with zeros.
             //
             byte[] target = buffer.ReadBytes(8);
             Target = new MacAddress(target);

@@ -10,15 +10,9 @@ namespace LifXNetTest
     [TestClass]
     public class ResponseFactoryTests
     {
-        #region Test Messages
-
-        private const string StateServiceResponseTestString = "2900005404ae7306d073d512006c00004c4946585632000098ccad3a23613d1403000000017cdd0000";
-
-        #endregion
-
         #region Helpers
 
-        private static byte[] GetResponseBufferFromString(string s)
+        private static byte[] GetResponseBufferFromHexString(string s)
         {
             return Enumerable.Range(0, s.Length / 2)
                 .Select(index => Convert.ToByte(s.Substring(index * 2, 2), 16))
@@ -28,9 +22,11 @@ namespace LifXNetTest
         #endregion
 
         [TestMethod]
-        public void TestStateServiceResponseGeneration()
+        public void Test_StateService_ResponseGeneration()
         {
-            byte[] testMessage = GetResponseBufferFromString(StateServiceResponseTestString);
+            const string TestResponseString = "2900005404ae7306d073d512006c00004c4946585632000098ccad3a23613d1403000000017cdd0000";
+
+            byte[] testMessage = GetResponseBufferFromHexString(TestResponseString);
 
             Response response = ResponseFactory.ConstructResponseFromBuffer(testMessage);
             Assert.IsNotNull(response, "ResponseFactory unexpectedly failed to deserialize the StateService message!");

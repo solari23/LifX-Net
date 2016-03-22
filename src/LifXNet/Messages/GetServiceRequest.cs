@@ -7,19 +7,28 @@ namespace LifXNet.Messages
     {
         public override MessageType MessageType { get { return MessageType.GetService; } }
 
+        public GetServiceRequest()
+        {
+            AckRequired = false;
+
+            // "Get" messages always get a response regardless.
+            //
+            ResponseRequired = false;
+        }
+
         public override UInt16 PayloadSizeInBytes
         {
             get
             {
-                // TODO
-                throw new NotImplementedException();
+                // No payload for this request.
+                //
+                return 0;
             }
         }
 
         protected override void SerializePayloadTo(MemoryStream buffer)
         {
-            // TODO
-            throw new NotImplementedException();
+            // No payload for this request.
         }
     }
 }
