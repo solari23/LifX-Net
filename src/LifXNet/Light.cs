@@ -8,7 +8,7 @@
         internal Light(NetworkManager networkManager)
             : base(networkManager)
         {
-
+            Helpers.NullCheck(networkManager, nameof(networkManager));
         }
     }
 }

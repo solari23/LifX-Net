@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace LifXNet.Messages
@@ -36,6 +37,8 @@ namespace LifXNet.Messages
         /// <param name="buffer">The buffer to read from.</param>
         private void ReadFrame(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             // Read the message size (2B) and verify it matches the expected size.
             //
             _messageSizeRead = buffer.LittleEndianReadUInt16();
@@ -76,6 +79,8 @@ namespace LifXNet.Messages
         /// <param name="buffer">The buffer to read from.</param>
         private void ReadFrameAddress(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             // The first 8 bytes contain the 6-byte Target MAC Address, right padded with zeros.
             //
             byte[] target = buffer.ReadBytes(8);
@@ -105,6 +110,8 @@ namespace LifXNet.Messages
         /// <param name="buffer">The buffer to read from.</param>
         private void ReadProtocolHeader(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             // The first 8 bytes are unused and marked "Reserved".
             //
             byte[] oblivion = buffer.ReadBytes(8);

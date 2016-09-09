@@ -8,6 +8,11 @@ namespace LifXNet
     public struct MacAddress
     {
         /// <summary>
+        /// The number of bytes in a MAC Address.
+        /// </summary>
+        public const int BytesInMacAddress = 6;
+
+        /// <summary>
         /// Gets an Empty MAC Address.
         /// </summary>
         public static MacAddress Empty
@@ -42,13 +47,13 @@ namespace LifXNet
         /// <param name="bytes">The byte array to construct the MAC Address from.</param>
         public MacAddress(byte[] bytes)
         {
-            if (bytes == null || bytes.Length < 6)
+            if (bytes == null || bytes.Length < BytesInMacAddress)
             {
-                throw new ArgumentException(nameof(bytes), "Need at least 6 bytes to construct a MAC address!");
+                throw new ArgumentException("Need at least 6 bytes to construct a MAC address!", nameof(bytes));
             }
 
-            _bytes = new byte[6];
-            Array.Copy(bytes, _bytes, 6);
+            _bytes = new byte[BytesInMacAddress];
+            Array.Copy(bytes, _bytes, BytesInMacAddress);
         }
 
         /// <summary>
@@ -57,7 +62,7 @@ namespace LifXNet
         /// <returns>A string representation of the MAC Address</returns>
         public override string ToString()
         {
-            return Bytes == null || Bytes.Length < 6
+            return Bytes == null || Bytes.Length < BytesInMacAddress
                 ? string.Empty 
                 : string.Format(
                     "{0:X2}-{1:X2}-{2:X2}-{3:X2}-{4:X2}-{5:X2}",
@@ -75,10 +80,12 @@ namespace LifXNet
         {
             return obj is MacAddress && this == (MacAddress)obj;
         }
+
         public override int GetHashCode()
         {
             return Bytes.GetHashCode();
         }
+
         public static bool operator ==(MacAddress left, MacAddress right)
         {
             if (left.Bytes.Length != right.Bytes.Length)
@@ -96,6 +103,7 @@ namespace LifXNet
 
             return true;
         }
+
         public static bool operator !=(MacAddress left, MacAddress right)
         {
             return !(left == right);

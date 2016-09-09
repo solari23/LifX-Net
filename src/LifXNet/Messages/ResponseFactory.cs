@@ -17,7 +17,7 @@ namespace LifXNet.Messages
 
         public static Response ConstructResponseFromBuffer(byte[] buffer)
         {
-            Debug.Assert(buffer != null);
+            Helpers.NullCheck(buffer, nameof(buffer));
 
             Response response = null;
             MessageType messageType = GetMessageTypeFromBuffer(buffer);
@@ -36,6 +36,8 @@ namespace LifXNet.Messages
         {
             const int MessageTypeFieldOffsetInBytes = 32;
             const int MessageTypeSizeInBytes = 2;
+
+            Debug.Assert(buffer != null);
 
             MessageType messageType = MessageType.NotSet;
 

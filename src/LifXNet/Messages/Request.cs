@@ -26,6 +26,8 @@ namespace LifXNet.Messages
         /// <param name="buffer">The buffer to write to.</param>
         private void WriteFrame(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             // Write the message size (2B)
             //
             buffer.LitteEndianWriteUInt16(MessageSizeInBytes);
@@ -60,6 +62,8 @@ namespace LifXNet.Messages
         /// <param name="buffer">The buffer to write to.</param>
         private void WriteFrameAddress(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             // The first 8 bytes contain the 6-byte Target MAC Address, right padded with 2 zeros.
             //
             byte[] targetAddress = Target.Bytes;
@@ -92,7 +96,6 @@ namespace LifXNet.Messages
             // The last byte is the Message's sequence number.
             //
             buffer.LittleEndianWriteByte(SequenceNumber);
-
         }
 
         /// <summary>
@@ -102,6 +105,8 @@ namespace LifXNet.Messages
         /// <param name="buffer">The buffer to write to.</param>
         private void WriteProtocolHeader(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             // The first 8 bytes are unusued and marked "Reserved".
             //
             buffer.WriteZeros(8);

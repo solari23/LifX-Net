@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace LifXNet.Messages
@@ -28,6 +29,8 @@ namespace LifXNet.Messages
 
         protected override void SerializePayloadTo(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             // No payload for this request.
         }
     }

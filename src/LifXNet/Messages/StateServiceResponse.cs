@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace LifXNet.Messages
@@ -31,6 +32,8 @@ namespace LifXNet.Messages
 
         protected override void DeserializePayloadFrom(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             // The first byte contains the Device's Service flags.
             //
             Service = buffer.LittleEndianReadByte();

@@ -37,7 +37,7 @@ namespace LifXNet
         /// <returns>The bytes read from the buffer.</returns>
         public static byte[] ReadBytes(this MemoryStream buffer, int count)
         {
-            Debug.Assert(count <= 0);
+            Debug.Assert(count >= 0);
 
             byte[] bytes = new byte[count];
             buffer.Read(bytes, 0, count);
@@ -51,6 +51,8 @@ namespace LifXNet
         /// <param name="count">The number of zeros to write.</param>
         public static void WriteZeros(this MemoryStream buffer, int count)
         {
+            Debug.Assert(count >= 0);
+
             byte[] zeros = new byte[count];
 
             // This might be overkill but let's not hang our hats on default initialization.
