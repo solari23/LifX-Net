@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace LifXNet
 {
@@ -18,7 +19,7 @@ namespace LifXNet
         /// <param name="socketGenerator">A function which creates a new instance of an IUdpSocket.</param>
         public NetworkManager(Func<IUdpSocket> socketGenerator)
         {
-            Helpers.NullCheck(socketGenerator, nameof(socketGenerator));
+            Debug.Assert(socketGenerator != null);
 
             SocketGenerator = socketGenerator;
         }

@@ -17,7 +17,7 @@ namespace LifXNet.Messages
 
         public static Response ConstructResponseFromBuffer(byte[] buffer)
         {
-            Helpers.NullCheck(buffer, nameof(buffer));
+            Debug.Assert(buffer != null);
 
             Response response = null;
             MessageType messageType = GetMessageTypeFromBuffer(buffer);

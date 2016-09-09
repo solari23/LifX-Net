@@ -11,6 +11,8 @@ namespace LifXNet.Messages
     {
         public virtual void SerializeTo(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             WriteFrame(buffer);
             WriteFrameAddress(buffer);
             WriteProtocolHeader(buffer);

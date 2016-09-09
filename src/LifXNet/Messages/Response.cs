@@ -18,6 +18,8 @@ namespace LifXNet.Messages
         /// <param name="buffer">The buffer to deserialize the Response object from.</param>
         public virtual void DeserializeFrom(MemoryStream buffer)
         {
+            Debug.Assert(buffer != null);
+
             ReadFrame(buffer);
             ReadFrameAddress(buffer);
             ReadProtocolHeader(buffer);
