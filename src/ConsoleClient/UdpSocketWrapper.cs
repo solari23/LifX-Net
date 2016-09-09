@@ -27,7 +27,20 @@ namespace ConsoleClient
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         }
 
-        public void BindTo(IPEndPoint endPoint)
+        public int ReceiveTimeout
+        {
+            get
+            {
+                return _socket.ReceiveTimeout;
+            }
+
+            set
+            {
+                _socket.ReceiveTimeout = value;
+            }
+        }
+
+        public void Bind(IPEndPoint endPoint)
         {
             _socket.Bind(endPoint);
         }
