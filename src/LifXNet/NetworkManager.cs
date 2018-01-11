@@ -9,19 +9,10 @@ namespace LifXNet
     internal class NetworkManager
     {
         /// <summary>
-        /// Gets the user-provided function to generate UDP sockets.
-        /// </summary>
-        public Func<IUdpSocket> SocketGenerator { get; private set; }
-
-        /// <summary>
         /// NetworkManager class constructor.
         /// </summary>
-        /// <param name="socketGenerator">A function which creates a new instance of an IUdpSocket.</param>
-        public NetworkManager(Func<IUdpSocket> socketGenerator)
+        public NetworkManager()
         {
-            Debug.Assert(socketGenerator != null);
-
-            SocketGenerator = socketGenerator;
         }
     }
 }

@@ -15,12 +15,9 @@ namespace LifXNet
         /// <summary>
         /// DeviceManager class constructor.
         /// </summary>
-        /// <param name="socketGenerator">A function which creates a new instance of an IUdpSocket.</param>
-        public DeviceManager(Func<IUdpSocket> socketGenerator)
+        public DeviceManager()
         {
-            Helpers.NullCheck(socketGenerator, nameof(socketGenerator));
-
-            NetworkManager = new NetworkManager(socketGenerator);
+            NetworkManager = new NetworkManager();
         }
     }
 }

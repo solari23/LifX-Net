@@ -5,7 +5,7 @@ namespace LifXNet.Messages
     /// <summary>
     /// Abstract representation of a message sent over the LAN between the client and LifX devices.
     /// </summary>
-    internal abstract class Message
+    public abstract class Message
     {
         public const UInt16 FrameSizeInBytes = 8;
         public const UInt16 FrameAddressSizeInBytes = 16;

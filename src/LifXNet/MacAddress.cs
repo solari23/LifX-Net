@@ -16,12 +16,7 @@ namespace LifXNet
         /// Gets an Empty MAC Address.
         /// </summary>
         public static MacAddress Empty
-        {
-            get
-            {
-                return new MacAddress(new byte[]{ 0, 0, 0, 0, 0, 0 });
-            }
-        }
+            => new MacAddress(new byte[]{ 0, 0, 0, 0, 0, 0 });
 
         private byte[] _bytes;
 
@@ -61,8 +56,7 @@ namespace LifXNet
         /// </summary>
         /// <returns>A string representation of the MAC Address</returns>
         public override string ToString()
-        {
-            return Bytes == null || Bytes.Length < BytesInMacAddress
+            => Bytes == null || Bytes.Length < BytesInMacAddress
                 ? string.Empty 
                 : string.Format(
                     "{0:X2}-{1:X2}-{2:X2}-{3:X2}-{4:X2}-{5:X2}",
@@ -72,19 +66,17 @@ namespace LifXNet
                     Bytes[3],
                     Bytes[4],
                     Bytes[5]);
-        }
 
         #region Comparison Operators
 
         public override bool Equals(Object obj)
-        {
-            return obj is MacAddress && this == (MacAddress)obj;
-        }
+            => obj is MacAddress && this == (MacAddress)obj;
 
         public override int GetHashCode()
-        {
-            return Bytes.GetHashCode();
-        }
+            => Bytes.GetHashCode();
+
+        public static bool operator !=(MacAddress left, MacAddress right)
+            => !(left == right);
 
         public static bool operator ==(MacAddress left, MacAddress right)
         {
@@ -102,11 +94,6 @@ namespace LifXNet
             }
 
             return true;
-        }
-
-        public static bool operator !=(MacAddress left, MacAddress right)
-        {
-            return !(left == right);
         }
 
         #endregion

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace LifXNet.Messages
 {
-    internal sealed class StateServiceResponse : Response
+    public sealed class StateServiceResponse : Response
     {
         /// <summary>
         /// Gets the Device's Service flags from the response. Currently this will only ever be "1" meaning UDP.

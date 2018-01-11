@@ -1,6 +1,6 @@
 ﻿namespace LifXNet.Messages
 {
-    internal enum MessageType : System.UInt16
+    public enum MessageType : System.UInt16
     {
         NotSet = 0,
 

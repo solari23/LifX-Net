@@ -6,7 +6,7 @@ using System.IO;
 
 namespace LifXNet.Messages
 {
-    internal static class ResponseFactory
+    public static class ResponseFactory
     {
         private static readonly ReadOnlyDictionary<MessageType, Func<Response>> ResponseConstructorMap =
             new ReadOnlyDictionary<MessageType, Func<Response>>(

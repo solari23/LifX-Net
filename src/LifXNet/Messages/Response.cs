@@ -7,7 +7,7 @@ namespace LifXNet.Messages
     /// <summary>
     /// Abstract representation of a response to a Request, received by the client from a device.
     /// </summary>
-    internal abstract class Response : Message
+    public abstract class Response : Message
     {
         private UInt16 _messageSizeRead = 0;
         private UInt16 _protocolVersionRead = 0;

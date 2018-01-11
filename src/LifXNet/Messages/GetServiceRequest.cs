@@ -4,7 +4,7 @@ using System.IO;
 
 namespace LifXNet.Messages
 {
-    internal sealed class GetServiceRequest : Request
+    public sealed class GetServiceRequest : Request
     {
         public override MessageType MessageType { get { return MessageType.GetService; } }
 
